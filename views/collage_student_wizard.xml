@@ -30,10 +30,4 @@
         <field name="target">new</field>
     </record>
 
-    <!-- Menu for Wizard -->
-    <!-- Attach to the existing Students menu to avoid parent error -->
-    <menuitem id="menu_student_wizard"
-              name="Add Student Wizard"
-              parent="action_collage_erp"
-              action="action_student_wizard"/>
 </odoo>

@@ -92,7 +92,7 @@
     </record>
 
 
-    <!-- Form View for Students -->
+     Form View for Students
     <record id="view_collage_student_form" model="ir.ui.view">
         <field name="name">collage.student.form</field>
         <field name="model">collage.student</field>
