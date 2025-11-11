@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_collage_student_list" model="ir.ui.view">
+        <field name="name">collage.student.list</field>
+        <field name="model">collage.student</field>
+        <field name="arch" type="xml">
+            <list string="Students"
+                  decoration-warning="state == 'draft'"
+                  decoration-success="state == 'approved'"
+                  decoration-danger="state == 'rejected'">
+                <field name="name"/>
+                <field name="roll_no"/>
+                <field name="course_id"/>
+                <field name="admission_date"/>
+                <field name="image"/>
+                <field name="dob"/>
+                <field name="age"/>
+                <field name="department_ids"/>
+                <field name="percentage"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Calendar View for Students -->
+    <record id="view_collage_student_calendar" model="ir.ui.view">
+        <field name="name">collage.student.calendar</field>
+        <field name="model">collage.student</field>
+        <field name="arch" type="xml">
+            <calendar string="Student Calendar" date_start="admission_date">
+                <field name="name"/>
+                <field name="course_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Graph View for Students -->
+    <record id="view_collage_student_graph" model="ir.ui.view">
+        <field name="name">collage.student.graph</field>
+        <field name="model">collage.student</field>
+        <field name="arch" type="xml">
+            <graph string="Students Graph" type="bar">
+                <field name="course_id" type="row"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Kanban View for Students -->
+    <record id="view_collage_student_kanban" model="ir.ui.view">
+        <field name="name">collage.student.kanban</field>
+        <field name="model">collage.student</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_example">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong>
+                                <field name="name"/>
+                            </strong>
+                            <div>
+                                Roll No:
+                                <field name="roll_no"/>
+                            </div>
+                            <div>
+                                Course:
+                                <field name="course_id"/>
+                            </div>
+                            <div>
+                                Admission Date:
+                                <field name="admission_date"/>
+                            </div>
+                            <div>
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Pivot View for Students -->
+    <record id="view_collage_student_pivot" model="ir.ui.view">
+        <field name="name">collage.student.pivot</field>
+        <field name="model">collage.student</field>
+        <field name="arch" type="xml">
+            <pivot string="Students Pivot">
+                <field name="course_id" type="row"/>
+                <field name="age" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+
+    <!-- Form View for Students -->
+    <record id="view_collage_student_form" model="ir.ui.view">
+        <field name="name">collage.student.form</field>
+        <field name="model">collage.student</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Student Details" create="true" edit="true" delete="true">
+                <header>
+
+                    <!-- Approve Button -->
+                    <button name="action_approve"
+                            type="object"
+                            string="Approve"
+                            class="btn-primary"
+                            modifiers='{"invisible": [["state", "!=", "draft"]]}'
+                    />
+
+                    <!-- Reject Button -->
+                    <button name="action_reject"
+                            type="object"
+                            string="Reject"
+                            class="btn-danger"
+                            modifiers='{"invisible": [["state", "!=", "draft"]]}'
+                    />
+
+                    <button name="%(action_report_student)d"
+                            string="Print Report"
+                            type="action"
+                            class="btn-secondary"/>
+
+                    <!-- Reset to Draft Button -->
+                    <button name="action_set_to_draft"
+                            type="object"
+                            string="Set to Draft"
+                            class="btn-secondary"
+                            modifiers='{"invisible": [["state", "=", "draft"]]}'/>
+
+                    <!-- Statusbar -->
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,approved,rejected"/>
+
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Student Name"/>
+                            <field name="roll_no" string="Roll No" readonly="1"/>
+                            <field name="course_id"/>
+                            <field name="percentage" string="percentage"/>
+                        </group>
+
+                        <group>
+                            <field name="dob" string="DOB"/>
+                            <field name="age" string="Current Age" readonly="0"/>
+                            <field name="department_ids"/>
+                        </group>
+                    </group>
+
+
+                    <notebook>
+                        <!-- General Information Tab -->
+                        <page string="General Info">
+                            <group>
+                                <field name="address" string="Address"/>
+                            </group>
+                        </page>
+
+                        <!-- Admission Details Tab -->
+                        <page string="Admission Details">
+                            <group>
+                                <field name="admission_date"/>
+                            </group>
+                        </page>
+                        <!-- add the image page -->
+                        <page string="STUDENT PIC">
+                            <group>
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </group>
+                        </page>
+                        <!-- You can add more pages here -->
+                    </notebook>
+                    <!-- ✅ Add this after notebook -->
+                    <chatter>
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </chatter>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_collage_erp" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">collage.student</field>
+        <field name="view_mode">list,form,calendar,graph,kanban,pivot</field>
+    </record>
+
+    <!-- ✅ SERVER ACTION -->
+    <record id="server_action_approve_student" model="ir.actions.server">
+        <field name="name">Approve Student (Server Action)</field>
+        <field name="model_id" ref="model_collage_student"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+    for record in records:
+    if record.state == 'draft':
+        record.write({'state': 'approved'})
+    else:
+        raise UserError("Only draft records can be approved!")
+    ]]></field>
+    </record>
+
+</odoo>

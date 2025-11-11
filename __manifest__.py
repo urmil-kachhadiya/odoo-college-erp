@@ -1,0 +1,28 @@
+{
+    'name': 'Collage Erp',
+    'version': '1.0',
+    'summary': 'College ERP Management System',
+    'description': 'Manage Students, Admissions, and more',
+    'author': 'Your Name',
+    'category': 'Education',
+    'depends': ['base', 'mail'],
+    'data': [
+
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'views/collage_erp_menu.xml',
+        'views/collage_student.xml',
+        'views/collage_department.xml',
+        'views/collage_course.xml',
+        'views/collage_teacher.xml',
+        'report/collage_report_action.xml',
+        'report/student_report.xml',
+        'views/collage_student_wizard.xml',
+        'views/data.xml',
+    ],
+    'images': ['static/description/icon.png'],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+    'sequence': 1,
+}

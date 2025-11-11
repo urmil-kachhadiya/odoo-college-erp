@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_collage_student,access_collage_student,model_collage_student,"",1,1,1,1
+collage_erp.access_collage_department,access_collage_department,collage_erp.model_collage_department,base.group_user,1,1,1,1
+collage_erp.access_student_wizard,access_student_wizard,collage_erp.model_student_wizard,base.group_user,1,1,1,1
+collage_erp.access_collage_course,access_collage_course,collage_erp.model_collage_course,base.group_user,1,1,1,1
+collage_erp.access_collage_teacher,access_collage_teacher,collage_erp.model_collage_teacher,base.group_user,1,1,1,1

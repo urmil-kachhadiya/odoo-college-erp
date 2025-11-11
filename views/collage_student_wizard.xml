@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Wizard Form -->
+    <record id="view_student_wizard_form" model="ir.ui.view">
+        <field name="name">student.wizard.form</field>
+        <field name="model">student.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Student">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="course_id"/>
+                        <field name="percentage"/>
+                    </group>
+
+                    <footer>
+                        <button string="Create Student" type="object" name="action_create_student" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Wizard -->
+    <record id="action_student_wizard" model="ir.actions.act_window">
+        <field name="name">Add Student Wizard</field>
+        <field name="res_model">student.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu for Wizard -->
+    <!-- Attach to the existing Students menu to avoid parent error -->
+    <menuitem id="menu_student_wizard"
+              name="Add Student Wizard"
+              parent="action_collage_erp"
+              action="action_student_wizard"/>
+</odoo>

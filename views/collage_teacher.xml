@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+
+        <!-- Teacher Tree View -->
+        <record id="view_collage_teacher_list" model="ir.ui.view">
+            <field name="name">collage.teacher.list</field>
+            <field name="model">collage.teacher</field>
+            <field name="arch" type="xml">
+                <list string="Teachers">
+                    <field name="name"/>
+                    <field name="teacher_id"/>
+                    <field name="department_id"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="joining_date"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Teacher Form View -->
+        <record id="view_collage_teacher_form" model="ir.ui.view">
+            <field name="name">collage.teacher.form</field>
+            <field name="model">collage.teacher</field>
+            <field name="arch" type="xml">
+                <form string="Teacher Details">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="teacher_id"/>
+                            <field name="department_id"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="joining_date"/>
+                        </group>
+                        <group string="Courses Taught">
+                            <field name="course_ids" widget="one2many_list"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Teacher Action -->
+        <record id="action_collage_teacher" model="ir.actions.act_window">
+            <field name="name">Teachers</field>
+            <field name="res_model">collage.teacher</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menu Item under College ERP -->
+        <menuitem id="menu_collage_teacher"
+                  name="Teachers"
+                  parent="menu_collage_erp_root"
+                  action="action_collage_teacher"/>
+
+    </data>
+</odoo>

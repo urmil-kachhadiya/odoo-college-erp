@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Student Report Template -->
+    <template id="report_student_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+
+                <div class="page" style="font-family: Arial, sans-serif; padding: 30px;">
+
+                    <!-- Header -->
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h1 style="margin:0; color: #004080;">My College</h1>
+                        <h3 style="margin:0; color: #666;">Student Report</h3>
+                        <hr style="border: 1px solid #004080; margin-top:10px; margin-bottom:20px;"/>
+                    </div>
+
+                    <!-- Student Details -->
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr>
+
+                            <!-- Student Image -->
+                            <td style="width:150px; border: 1px solid #ccc; padding:10px; text-align:center;">
+                                <img t-att-src="'data:image/png;base64,%s' % (o.image or '')"
+                                     style="max-width:150px; max-height:150px; border-radius: 8px;"/>
+                            </td>
+
+                            <!-- Student Info -->
+                            <td style="border: 1px solid #ccc; padding:15px; vertical-align: top;">
+                                <p>
+                                    <strong>Name:</strong>
+                                    <t t-esc="o.name"/>
+                                </p>
+                                <p>
+                                    <strong>Roll No:</strong>
+                                    <t t-esc="o.roll_no"/>
+                                </p>
+                                <p>
+                                    <strong>Course:</strong>
+                                    <t t-esc="o.course_id.name"/>
+                                </p>
+                                <p>
+                                    <strong>Date of Birth:</strong>
+                                    <t t-esc="o.dob"/>
+                                </p>
+                                <p>
+                                    <strong>Admission Date:</strong>
+                                    <t t-esc="o.admission_date"/>
+                                </p>
+                                <p>
+                                    <strong>Age:</strong>
+                                    <t t-esc="o.age"/>
+                                </p>
+
+                                <!-- Departments (Many2one in your model, so print directly) -->
+                                <p>
+                                    <strong>Department:</strong>
+                                    <t t-esc="o.department_ids.name"/>
+                                </p>
+
+                                <p>
+                                    <strong>Teacher:</strong>
+                                    <t t-esc="o.course_id.teacher_id.name"/>
+                                </p>
+
+                                <!-- APPROVED / REJECTED / DRAFT -->
+                                <p>
+                                    <strong>Status:</strong>
+                                    <t t-esc="dict(o.fields_get()['state']['selection']).get(o.state)"/>
+                                </p>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Footer -->
+                    <div style="text-align:center; margin-top: 20px; font-size:12px; color:#999;">
+                        Generated On:
+                        <t t-esc="o.create_date"/>
+                    </div>
+
+                </div>
+
+            </t>
+        </t>
+    </template>
+
+</odoo>

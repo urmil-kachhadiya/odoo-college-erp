@@ -1,0 +1,11 @@
+<odoo>
+    <record id="action_report_student" model="ir.actions.report">
+        <field name="name">Student Report</field>
+        <field name="model">collage.student</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">collage_erp.report_student_template</field>
+        <field name="report_file">collage_erp.report_student_template</field>
+        <field name="binding_model_id" ref="model_collage_student"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

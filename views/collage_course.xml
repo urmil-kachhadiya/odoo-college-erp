@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+
+        <!-- Course list View -->
+        <record id="view_collage_course_list" model="ir.ui.view">
+            <field name="name">collage.course.list</field>
+            <field name="model">collage.course</field>
+            <field name="arch" type="xml">
+                <list string="Courses">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="department_id"/>
+                    <field name="teacher_id"/>
+                    <field name="duration"/>
+                    <field name="credit_points"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Course Form View -->
+        <record id="view_collage_course_form" model="ir.ui.view">
+            <field name="name">collage.course.form</field>
+            <field name="model">collage.course</field>
+            <field name="arch" type="xml">
+                <form string="Course Details">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="department_id"/>
+                            <field name="teacher_id"/>
+                        </group>
+                        <group>
+                            <field name="duration"/>
+                            <field name="credit_points"/>
+                        </group>
+                        <group string="Students">
+                            <field name="student_ids" widget="many2many_tags"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Course Action -->
+        <record id="action_collage_course" model="ir.actions.act_window">
+            <field name="name">Courses</field>
+            <field name="res_model">collage.course</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menu Item under College ERP -->
+        <menuitem id="menu_collage_course"
+                  name="Courses"
+                  parent="menu_collage_erp_root"
+                  action="action_collage_course"/>
+
+    </data>
+</odoo>

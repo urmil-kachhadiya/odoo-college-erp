@@ -1,0 +1,12 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Sequence for Roll Number -->
+        <record id="seq_collage_student_rollno" model="ir.sequence">
+            <field name="name">Collage Student Roll Number</field>
+            <field name="code">collage.student.sequence</field>
+            <field name="padding">2</field>
+            <field name="number_next_actual">1</field>
+            <field name="implementation">standard</field>
+        </record>
+    </data>
+</odoo>

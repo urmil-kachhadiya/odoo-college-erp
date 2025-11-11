@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Create a new group for College ERP Managers -->
+        <record id="group_collage_manager" model="res.groups">
+            <field name="name">College Manager</field>
+            <field name="category_id" ref="base.module_category_hidden"/> <!-- Or choose a category like Settings -->
+        </record>
+
+        <!-- Optional: assign access rights to the new group -->
+        <record id="access_collage_student_manager" model="ir.model.access">
+            <field name="name">collage_student_manager_access</field>
+            <field name="model_id" ref="model_collage_student"/>
+            <field name="group_id" ref="collage_erp.group_collage_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+    </data>
+</odoo>
